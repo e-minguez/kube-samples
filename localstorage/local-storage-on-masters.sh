@@ -1,3 +1,4 @@
+#!/bin/bash
 oc adm new-project openshift-local-storage
 oc annotate project openshift-local-storage openshift.io/node-selector=''
 export OC_VERSION=$(oc version -o yaml | grep openshiftVersion | grep -o '[0-9]*[.][0-9]*' | head -1)
@@ -25,7 +26,7 @@ spec:
   sourceNamespace: openshift-marketplace
 EOF
 
-until oc wait crd/localvolumes.local.storage.openshift.io --for condition=established --timeout 600s >/dev/null 2>&1 ; do sleep 1 ; done
+until oc wait crd/localvolumes.local.storage.openshift.io --for condition=established --timeout 10s >/dev/null 2>&1 ; do sleep 1 ; done
 
 cat <<EOF| oc apply -f -
 apiVersion: "local.storage.openshift.io/v1"
@@ -54,4 +55,5 @@ spec:
         - /dev/sdb
 EOF
 
+until oc get sc/local-sc >/dev/null 2>&1 ; do sleep 1 ; done
 oc patch storageclass local-sc -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'

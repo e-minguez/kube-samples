@@ -28,7 +28,7 @@ spec:
   name: advanced-cluster-management
 EOF
 
-until oc wait crd/multiclusterhubs.operator.open-cluster-management.io --for condition=established --timeout 600s >/dev/null 2>&1 ; do sleep 1 ; done
+until oc wait crd/multiclusterhubs.operator.open-cluster-management.io --for condition=established --timeout 10s >/dev/null 2>&1 ; do sleep 1 ; done
 
 envsubst <<"EOF" | oc apply -f -
 apiVersion: operator.open-cluster-management.io/v1
