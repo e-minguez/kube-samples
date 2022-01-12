@@ -1,5 +1,5 @@
 #!/bin/bash
-oc adm new-project openshift-local-storage
+oc create namespace openshift-local-storage
 oc annotate project openshift-local-storage openshift.io/node-selector=''
 export OC_VERSION=$(oc version -o yaml | grep openshiftVersion | grep -o '[0-9]*[.][0-9]*' | head -1)
 
