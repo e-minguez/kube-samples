@@ -42,7 +42,7 @@ EOF
 oc patch provisioning provisioning-configuration --type merge -p '{"spec":{"watchAllNamespaces": true }}'
 
 export DB_VOLUME_SIZE="10Gi"
-export FS_VOLUME_SIZE="20Gi"
+export FS_VOLUME_SIZE="10Gi"
 export OCP_VERSION="4.9"
 export OCP_RELEASE_VERSION=$(curl -s https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest-${OCP_VERSION}/release.txt | awk '/machine-os / { print $2 }')
 export ISO_URL="https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/${OCP_VERSION}/latest/rhcos-${OCP_VERSION}.0-x86_64-live.x86_64.iso"
