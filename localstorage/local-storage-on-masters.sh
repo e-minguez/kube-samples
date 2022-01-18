@@ -53,7 +53,9 @@ spec:
       fsType: xfs 
       devicePaths: 
         - /dev/sdb
+        - /dev/sdc
 EOF
 
 until oc get sc/local-sc >/dev/null 2>&1 ; do sleep 1 ; done
 oc patch storageclass local-sc -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+

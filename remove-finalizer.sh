@@ -1,0 +1,1 @@
+oc patch pod/whatever --type=merge -p '{"metadata":{"finalizers":null}}'
