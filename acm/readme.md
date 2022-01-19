@@ -5,6 +5,10 @@
 
 oc patch provisioning provisioning-configuration --type merge -p '{"spec":{"preProvisioningOSDownloadURLs":null,"provisioningDHCPRange":null,"provisioningIP":null,"provisioningInterface":null,"provisioningMacAddresses":null,"provisioningNetwork":"Disabled","provisioningNetworkCIDR":null}}'
 
+or enable `virtualMediaViaExternalNetwork: true`
+
+oc patch provisioning provisioning-configuration --type merge -p '{"spec":{"virtualMediaViaExternalNetwork": true}}'
+
 * Use `echo -n "pass" | base64 -w0` to encode the password and avoid new line characters
 * use idrac-redfish+https for Dell + httpS
 * additionalNTPSources if needed

@@ -42,7 +42,8 @@ EOF
 # Enable this to be able to create hosts in different namespaces than the metal3 one
 oc patch provisioning provisioning-configuration --type merge -p '{"spec":{"watchAllNamespaces": true }}'
 
-# Get rid of the provisioning network
+# Enable using the external network to serve the virtual media
+oc patch provisioning provisioning-configuration --type merge -p '{"spec":{"virtualMediaViaExternalNetwork": true}}'
 
 # Enable assisted service
 
